@@ -15,6 +15,7 @@
     "autoload": {
         "psr-4": {
             "Tualo\\Office\\Fiskaly\\": "src/"
-        }
+        },
+        "files": ["src/functions.php"]
     }
 }
