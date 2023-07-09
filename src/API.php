@@ -9,9 +9,9 @@ use GuzzleHttp\Client;
 class API
 {
 
-    private static mixed $ENV = null;
-    private static mixed $TSS = null;
-    private static mixed $clientID = '5059fbe8-1b3b-11ee-a0f1-0cc47a979684';
+    private static $ENV = null;
+    private static $TSS = null;
+    private static $clientID = '5059fbe8-1b3b-11ee-a0f1-0cc47a979684';
 
     public static function addEnvrionment(string $id, string $val)
     {
@@ -390,6 +390,41 @@ class API
         return $result;
     }
 
+
+    public static function getTSSInformation()
+    {
+        self::precheck();
+        if (!isset(self::$ENV['guid'])) {
+            throw new \Exception('TSS not initialized');
+        }
+
+
+        $client = new Client(
+            [
+                'base_uri' => self::env('sign_base_url'),
+                'timeout'  => 60.0,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . self::env('access_token')
+                ]
+            ]
+        );
+        $response = $client->get('/api/v2/tss/' . self::env('guid'));
+        $code = $response->getStatusCode(); // 200
+        $reason = $response->getReasonPhrase(); // OK
+
+        if ($code != 200) {
+            throw new \Exception($reason);
+        }
+        $result = json_decode($response->getBody()->getContents(), true);
+        if (isset($result['certificate'])) {
+            foreach ($result as $id => $val) {
+                self::addTss($id, is_array($val) ? json_encode($val) : $val);
+                
+            }
+        }
+        return $result;
+    }
+
     public static function adminPin()
     {
         self::precheck();
@@ -566,7 +601,6 @@ class API
         $start_result = json_decode($response->getBody()->getContents(), true);
 
 
-        print_r($start_result);
 
         $response = $client->put('/api/v2/tss/' . self::env('guid').'/tx/'.$transactionID.'?tx_revision=2', [
             'json' => [
@@ -595,7 +629,6 @@ class API
             throw new \Exception($reason);
         }
         $finish_result = json_decode($response->getBody()->getContents(), true);
-        print_r($finish_result);
 
         return $finish_result;
     }

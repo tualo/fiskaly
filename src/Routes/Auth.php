@@ -136,5 +136,14 @@ class Auth implements IRoute{
             }
         },array('get','post'),true);
 
+        Route::add('/fiskaly/information',function($matches){
+            App::contenttype('application/json');
+            try{
+                App::result('data', API::getTSSInformation());
+            }catch(\Exception $e){
+                App::result('msg', $e->getMessage());
+            }
+        },array('get','post'),true);
+
     }
 }

@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "*"
+        "guzzlehttp/guzzle": "*",
+        "ramsey/uuid":  "*"
     },
     "minimum-stability": "dev",
     "autoload": {
