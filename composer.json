@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "phpseclib/phpseclib": "*"
+        "guzzlehttp/guzzle": "*"
     },
     "minimum-stability": "dev",
     "autoload": {

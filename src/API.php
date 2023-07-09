@@ -47,6 +47,7 @@ class API
         return $data;
     }
 
+    
     public static function query(string $url, mixed $header, mixed $data, string $method = 'POST'): mixed
     {
         $ch = curl_init(self::replacer($url));
