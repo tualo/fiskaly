@@ -10,7 +10,7 @@ use Tualo\Office\FiskalyAPI\API;
 
 class CreateTSS implements IRoute
 {
-    public static function create($isLive = false, $db = null)
+    public static function create(bool $isLive = false, mixed $db = null, string $systemId = 'tualo')
     {
         if (is_null($db)) {
             $db = TualoApplication::get('session')->getDB();
@@ -34,10 +34,7 @@ class CreateTSS implements IRoute
         if (is_null($auth['access_token']) || empty($auth['access_token'])) {
             throw new \Exception('No access token found. Please authenticate first.');
         }
-        $tss = API::createTSS([
-            'Authorization: Bearer ' . $auth['access_token'],
-            'Content-Type:application/json'
-        ]);
+        $tss = API::createTSS($systemId);
         return $tss;
     }
 
