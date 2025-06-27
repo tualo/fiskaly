@@ -5,6 +5,8 @@ require_once "Routes/JSLoader.php";
 require_once "Routes/Auth.php";
 require_once "Routes/State.php";
 require_once "Routes/CreateTSS.php";
+require_once "Routes/VatDefinitions.php";
+require_once "Routes/CashRegisters.php";
 
 require_once "Commands/InstallSQL.php";
 require_once "Commands/Setup.php";

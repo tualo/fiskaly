@@ -31,16 +31,6 @@ class Auth implements IRoute
             }
         }, array('get', 'post'), true);
 
-        Route::add('/fiskaly/cashregisters', function ($matches) {
-            TualoApplication::contenttype('application/json');
-            try {
-                $list = API::getCashRegisters();
-                TualoApplication::result('cashregisters', $list);
-            } catch (\Exception $e) {
-                TualoApplication::result('msg', $e->getMessage());
-            }
-        }, array('get', 'post'), true);
-
 
 
         Route::add('/fiskaly/personalizeTSS', function ($matches) {
@@ -125,14 +115,7 @@ class Auth implements IRoute
             }
         }, array('get', 'post'), true);
 
-        Route::add('/fiskaly/vat_definitions', function ($matches) {
-            TualoApplication::contenttype('application/json');
-            try {
-                TualoApplication::result('data', API::getVatDefinitions());
-            } catch (\Exception $e) {
-                TualoApplication::result('msg', $e->getMessage());
-            }
-        }, array('get', 'post'), true);
+
 
         Route::add('/pos/fiskaly/information/(?P<terminalid>[\w\-\_]+)', function ($matches) {
             TualoApplication::contenttype('application/json');
