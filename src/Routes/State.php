@@ -38,10 +38,10 @@ class State implements IRoute
                 }
 
 
-                $tests = [/*[
+                $tests = [[
                     'key' => 'test',
                     'title' => 'Test-System',
-                ], */[
+                ], [
                     'key' => 'live',
                     'title' => '<strong>Live-System</strong>',
                 ]];
