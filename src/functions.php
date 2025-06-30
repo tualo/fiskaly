@@ -7,6 +7,8 @@ require_once "Routes/State.php";
 require_once "Routes/CreateTSS.php";
 require_once "Routes/VatDefinitions.php";
 require_once "Routes/CashRegisters.php";
+require_once "Routes/TSSClients.php";
+
 
 require_once "Commands/InstallSQL.php";
 require_once "Commands/Setup.php";

@@ -41,3 +41,4 @@ create table if not exists fiskaly_tss (
     primary key (tss, id),
     val longtext not null
 );
+

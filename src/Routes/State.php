@@ -38,10 +38,10 @@ class State implements IRoute
                 }
 
 
-                $tests = [[
+                $tests = [/*[
                     'key' => 'test',
                     'title' => 'Test-System',
-                ], [
+                ], */[
                     'key' => 'live',
                     'title' => '<strong>Live-System</strong>',
                 ]];
@@ -53,6 +53,8 @@ class State implements IRoute
 
                     API::setLive($t['key'] == 'live');
                     $env = API::getEnvironment();
+                    API::auth();
+
 
                     if (!isset($env['api_key']) || (!isset($env['api_secret']))) {
                         $messages[] = [
@@ -139,15 +141,47 @@ class State implements IRoute
                         ];
                     } else if ($tss['state'] == 'INITIALIZED') {
 
+                        $clients = [
+                            'count' => 0
+                        ];
 
-                        $getCashRegisters = API::getCashRegisters();
+                        $expired = false;
+                        try {
 
+                            if ($expired = API::isExpired()) {
+                                $messages[] = [
+                                    'color' => 'red',
+                                    'icon' => 'warning',
+                                    'text' => $t['title'] . ': TSS is expired. Please run <b>./tm renew-tss --client &lt;system&gt; [--live]</b> to renew the TSS.'
+                                ];
+                                // API::auth();
+                            } else {
+                                $messages[] = [
+                                    'color' => 'green',
+                                    'icon' => 'check',
+                                    'text' => $t['title'] . ': TSS is not expired. '
+                                ];
+                            }
+                        } catch (\Exception $e) {
+                        }
 
+                        try {
+                            if (!$expired) {
+                                $clients = API::clients();
+                            }
+                        } catch (\Exception $e) {
+                            $messages[] = [
+                                'color' => 'red',
+                                'icon' => 'warning',
+                                'text' => $e->getMessage()
+                            ];
+                        }
                         $messages[] = [
                             'color' => 'green',
                             'icon' => 'circle-check',
                             'text' => $t['title'] . ': TSS is initialized. ' .
-                                ((isset($getCashRegisters['count']) && ($getCashRegisters['count'] == 0)) ? ' <font color="red">No registered clients found.</font> use your app to register clients ' : ' everything is fine ')
+                                ((isset($clients['count']) && ($clients['count'] == 0)) ? ' <font color="red">No registered clients found.</font> use your app to register clients ' :
+                                    ' everything is fine ' . $clients['count'] . ' registered clients found.')
 
                         ];
                     } else {
