@@ -1,25 +1,26 @@
 {
-    "name": "tualo/fiskaly",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Thomas Hoffmann",
-            "email": "thomas.hoffmann@tualo.de"
-        }
-    ],
-    "require": {
-        "guzzlehttp/guzzle": "*",
-        "ramsey/uuid": "*",
-        "tualo/fiskaly-api": "*"
-    },
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-            "Tualo\\Office\\Fiskaly\\": "src/"
-        },
-        "files": [
-            "src/functions.php"
-        ]
+  "name": "tualo/fiskaly",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Thomas Hoffmann",
+      "email": "thomas.hoffmann@tualo.de"
     }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.9.3",
+    "ramsey/uuid": "*",
+    "tualo/fiskaly-api": "*"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Tualo\\Office\\Fiskaly\\": "src/"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "version": "1.0.1"
 }
