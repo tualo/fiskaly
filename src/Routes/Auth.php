@@ -116,6 +116,15 @@ class Auth implements IRoute
         }, array('get', 'post'), true);
 
 
+        Route::add('/fiskaly/information/(?P<terminalid>[\w\-\_]+)', function ($matches) {
+            TualoApplication::contenttype('application/json');
+            try {
+                TualoApplication::result('data', API::getTSSInformation($matches['terminalid']));
+                TualoApplication::result('success', true);
+            } catch (\Exception $e) {
+                TualoApplication::result('msg', $e->getMessage());
+            }
+        }, array('get', 'post'), true);
 
         Route::add('/pos/fiskaly/information/(?P<terminalid>[\w\-\_]+)', function ($matches) {
             TualoApplication::contenttype('application/json');
