@@ -20,7 +20,7 @@ class CreateTSS implements IRoute
         }
 
         API::db($db);
-        API::setLive($isLive);
+        // API::setLive($isLive);
         $env = API::getEnvironment();
 
 

@@ -70,16 +70,6 @@ class Auth implements IRoute
         }, array('get', 'post'), true);
 
 
-        Route::add('/fiskaly/createClient/(?P<terminalid>[\w\-\_]+)', function ($matches) {
-            TualoApplication::contenttype('application/json');
-            try {
-                TualoApplication::result('data', API::createClient($matches['terminalid']));
-            } catch (\Exception $e) {
-                TualoApplication::result('msg', $e->getMessage());
-            }
-        }, array('get', 'post'), true);
-
-
 
         Route::add('/fiskaly/logoutAdmin', function ($matches) {
             TualoApplication::contenttype('application/json');
@@ -115,26 +105,6 @@ class Auth implements IRoute
             }
         }, array('get', 'post'), true);
 
-
-        Route::add('/fiskaly/information/(?P<terminalid>[\w\-\_]+)', function ($matches) {
-            TualoApplication::contenttype('application/json');
-            try {
-                TualoApplication::result('data', API::getTSSInformation($matches['terminalid']));
-                TualoApplication::result('success', true);
-            } catch (\Exception $e) {
-                TualoApplication::result('msg', $e->getMessage());
-            }
-        }, array('get', 'post'), true);
-
-        Route::add('/pos/fiskaly/information/(?P<terminalid>[\w\-\_]+)', function ($matches) {
-            TualoApplication::contenttype('application/json');
-            try {
-                TualoApplication::result('data', API::getTSSInformation($matches['terminalid']));
-                TualoApplication::result('success', true);
-            } catch (\Exception $e) {
-                TualoApplication::result('msg', $e->getMessage());
-            }
-        }, array('get', 'post'), true);
 
 
         Route::add('/fiskaly/test', function ($matches) {

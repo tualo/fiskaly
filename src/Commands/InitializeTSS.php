@@ -47,7 +47,7 @@ class InitializeTSS implements ICommandline
                 try {
                     API::resetEnvrionment();
                     API::db($session->newDBByRow($db));
-                    API::setLive($live);
+                    // API::setLive($live);
 
                     API::authenticateAdmin();
                     API::initializeTSS();

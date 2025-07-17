@@ -51,7 +51,7 @@ class State implements IRoute
                 foreach ($tests as  $t) {
                     API::resetEnvrionment();
 
-                    API::setLive($t['key'] == 'live');
+                    //API::setLive($t['key'] == 'live');
                     $env = API::getEnvironment();
                     API::auth();
 

@@ -10,7 +10,7 @@
   ],
   "require": {
     "guzzlehttp/guzzle": "^7.9.3",
-    "ramsey/uuid": "1.2",
+    "ramsey/uuid": "~4.9.0",
     "tualo/fiskaly-api": "^1.0.1"
   },
   "minimum-stability": "dev",

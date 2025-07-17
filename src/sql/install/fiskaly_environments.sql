@@ -1,6 +1,15 @@
 DELIMITER ;
 
 
+create table if not exists fiskaly_state (
+    id varchar(255) not null ,
+    val longtext not null,
+    primary key (id)
+);
+insert ignore into fiskaly_state (id, val) values 
+('type', 'test');
+
+
 create table if not exists fiskaly_environments (
     id varchar(255) not null ,
     type enum('live','test') not null default 'test',

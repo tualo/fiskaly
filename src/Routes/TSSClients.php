@@ -15,7 +15,7 @@ class TSSClients implements IRoute
         Route::add('/fiskaly/tss_clients', function ($matches) {
             TualoApplication::contenttype('application/json');
             try {
-                API::setLive(true);
+                // API::setLive(true);
                 TualoApplication::result('clients', API::clients());
                 TualoApplication::result('success', true);
             } catch (\Exception $e) {
@@ -28,7 +28,7 @@ class TSSClients implements IRoute
             try {
                 $db = TualoApplication::get('session')->getDB();
 
-                API::setLive(true);
+                // API::setLive(true);
 
                 $transactions = API::clientTransactions($matches['client_id']);
                 $sql = 'update kassenterminals_client_id set last_tx_read = now() where tss_client_id = {client_id}';

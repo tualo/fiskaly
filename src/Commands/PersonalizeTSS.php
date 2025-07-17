@@ -51,7 +51,7 @@ class PersonalizeTSS implements ICommandline
                     }
                     API::resetEnvrionment();
                     API::db($session->newDBByRow($db));
-                    API::setLive($live);
+                    // API::setLive($live);
                     API::personalizeTSS();
                     API::addTss('admin_pin', $pin);
                     API::adminPin();
