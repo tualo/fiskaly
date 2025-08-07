@@ -110,8 +110,6 @@ class Auth implements IRoute
         Route::add('/fiskaly/test', function ($matches) {
             TualoApplication::contenttype('application/json');
             try {
-                error_reporting(E_ALL);
-                ini_set('display_errors', '1');
 
                 if (isset($_REQUEST['a'])   && ($_REQUEST['a'] == 'on')) {
                     TualoApplication::result('msg', 'ok');
