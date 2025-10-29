@@ -8,7 +8,7 @@ use Tualo\Office\Basic\IRoute;
 use Tualo\Office\FiskalyAPI\API;
 
 
-class Auth implements IRoute
+class Auth extends \Tualo\Office\Basic\RouteWrapper
 {
     public static function register()
     {

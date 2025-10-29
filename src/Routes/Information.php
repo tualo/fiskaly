@@ -9,7 +9,7 @@ use Tualo\Office\FiskalyAPI\API;
 use Tualo\Office\FiskalyAPI\ApiException;
 
 
-class Information implements IRoute
+class Information extends \Tualo\Office\Basic\RouteWrapper
 {
     public static function register()
     {

@@ -8,7 +8,7 @@ use Tualo\Office\Basic\IRoute;
 use Tualo\Office\FiskalyAPI\API;
 
 
-class CreateTSS implements IRoute
+class CreateTSS extends \Tualo\Office\Basic\RouteWrapper
 {
     public static function create(bool $isLive = false, mixed $db = null, string $systemId = 'tualo')
     {
