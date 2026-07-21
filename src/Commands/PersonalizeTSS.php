@@ -18,7 +18,7 @@ class PersonalizeTSS implements ICommandline
 
     public static function getCommandName(): string
     {
-        return 'personalize-tss';
+        return 'fiskaly-personalize-tss';
     }
 
     public static function setup(Cli $cli)
@@ -27,11 +27,12 @@ class PersonalizeTSS implements ICommandline
             ->description('personalize a tse with a pin')
             ->opt('client', 'only use this client', true, 'string')
             ->opt('pin', 'pin', true, 'string')
+            ->opt('tss', 'tss identifier', true, 'string')
             ->opt('live', 'setup live tse', false, 'boolean');
     }
 
 
-    public static function setupClients(string $msg, string $clientName, string $pin, bool $live = false)
+    public static function setupClients(string $msg, string $clientName, Args $args)
     {
         $_SERVER['REQUEST_URI'] = '';
         $_SERVER['REQUEST_METHOD'] = 'none';
@@ -46,8 +47,9 @@ class PersonalizeTSS implements ICommandline
             } else {
                 PostCheck::formatPrint(['blue'], $msg . '(' . $db['db_name'] . '):  ');
                 try {
-                    if (strlen($pin) <= 6 || strlen($pin) > 12) {
-                        throw new \Exception('pin length must be between 6 and 12 characters ' . $pin);
+                    $pin = $args->getOpt('pin');
+                    if (strlen($pin) < 6 || strlen($pin) > 12) {
+                        throw new \Exception('pin length must be between 6 and 12 characters ' . strlen($pin));
                     }
                     API::resetEnvrionment();
                     API::db($session->newDBByRow($db));
@@ -68,6 +70,6 @@ class PersonalizeTSS implements ICommandline
     {
         $clientName = $args->getOpt('client');
         if (is_null($clientName)) exit();
-        self::setupClients('personalize a tse on fiskaly', $clientName, $args->getOpt('pin'), $args->getOpt('live', false));
+        self::setupClients('personalize a tse on fiskaly', $clientName, $args);
     }
 }

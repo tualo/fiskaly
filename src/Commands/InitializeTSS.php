@@ -18,7 +18,7 @@ class InitializeTSS implements ICommandline
 
     public static function getCommandName(): string
     {
-        return 'initialize-tss';
+        return 'fiskaly-initialize-tss';
     }
 
     public static function setup(Cli $cli)

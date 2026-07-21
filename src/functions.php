@@ -14,6 +14,9 @@ require_once "Routes/CreateClient.php";
 
 require_once "Commands/InstallSQL.php";
 require_once "Commands/Setup.php";
+require_once "Commands/Auth.php";
+require_once "Commands/AdminPIN.php";
+require_once "Commands/SetupAPI.php";
 require_once "Commands/CreateTSS.php";
 require_once "Commands/PersonalizeTSS.php";
 require_once "Commands/InitializeTSS.php";

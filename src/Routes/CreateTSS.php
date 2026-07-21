@@ -28,9 +28,7 @@ class CreateTSS extends \Tualo\Office\Basic\RouteWrapper
             throw new \Exception(' TSS/TSE allready exists.');
         }
 
-        $auth = API::auth([
-            'Content-Type:application/json'
-        ]);
+        $auth = API::auth();
         if (is_null($auth['access_token']) || empty($auth['access_token'])) {
             throw new \Exception('No access token found. Please authenticate first.');
         }

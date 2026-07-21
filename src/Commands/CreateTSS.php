@@ -18,7 +18,7 @@ class CreateTSS implements ICommandline
 
     public static function getCommandName(): string
     {
-        return 'create-tss';
+        return 'fiskaly-create-tss';
     }
 
     public static function setup(Cli $cli)

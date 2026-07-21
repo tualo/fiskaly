@@ -10,19 +10,22 @@ use Tualo\Office\FiskalyAPI\API;
 
 class Auth extends \Tualo\Office\Basic\RouteWrapper
 {
+    public static function auth()
+    {
+        $auth = API::auth();
+        if (isset($auth['access_token'])) {
+            API::addEnvrionment('access_token', $auth['access_token']);
+            API::addEnvrionment('access_token_expires_at', $auth['access_token_expires_at']);
+        }
+        return $auth;
+    }
     public static function register()
     {
         Route::add('/fiskaly/auth', function ($matches) {
             TualoApplication::contenttype('application/json');
             try {
-                $auth = API::auth([
-                    'Content-Type:application/json'
-                ]);
-                if (isset($auth['access_token'])) {
-                    API::addEnvrionment('access_token', $auth['access_token']);
-                    API::addEnvrionment('access_token_expires_at', $auth['access_token_expires_at']);
-                }
 
+                $auth = self::auth();
                 TualoApplication::result('time', time());
                 TualoApplication::result('auth', $auth);
                 TualoApplication::result('success', true);

@@ -17,6 +17,14 @@ create table if not exists fiskaly_environments (
     primary key (id, type)
 );
 
+
+alter table fiskaly_environments add if not exists type enum('live','test');
+update fiskaly_environments set type = 'live' where type is null;
+alter table fiskaly_environments modify type enum('live','test') default 'test';
+alter table fiskaly_environments drop primary key;
+alter table fiskaly_environments add primary key (id, type);
+
+
 -- Insert default values for fiskaly environments
 -- The URLs are for the test and live environments of fiskaly
 -- 'dsfinvk_base_url' is the base URL for the DSFinV-K API
