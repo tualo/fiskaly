@@ -4,7 +4,7 @@ namespace Tualo\Office\Fiskaly\Commands;
 
 use Garden\Cli\Cli;
 use Garden\Cli\Args;
-use phpseclib3\Math\BigInteger\Engines\PHP;
+use phpseclib4\Math\BigInteger\Engines\PHP;
 use Tualo\Office\Basic\ISetupCommandline;
 use Tualo\Office\ExtJSCompiler\Helper;
 use Tualo\Office\Basic\TualoApplication as App;
